@@ -42,6 +42,11 @@ Jenis dan Ukuran Berkas | ZIP (13.1M)
 
 Pada berkas yang diunduh yakni movie-recommendation-data.zip berisi satu folder dengan isi data links.csv, movies.csv, ratings.csv, tags.csv untuk rincian variabel dapat dilihat pada gambar berikut:
 
+![Screenshot 2024-10-21 010141](https://github.com/user-attachments/assets/8008f841-6817-4412-bf3d-0d54318870fd)
+![Screenshot 2024-10-21 010155](https://github.com/user-attachments/assets/2f7af2b3-cc6c-47fb-91c4-b4c18900c151)
+![Screenshot 2024-10-21 010210](https://github.com/user-attachments/assets/60087f32-e565-4876-b0fb-52311b1e9e57)
+![Screenshot 2024-10-21 010226](https://github.com/user-attachments/assets/90a18231-a03a-48d7-8b86-ff1b13fcf9ce)
+
 
 Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemrosesan data, yaitu:
 1. Menampilkan dataset untuk mengetahui variabel yang digunakan.
@@ -76,48 +81,52 @@ Berikut adalah tahapan dalam melakukan data preparation:
 Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model Development* terhadap data, dengan menggunakan beberapa metode, diantaranya sebagai berikut:
 
 1. ***Content Based Filtering***
-  **Kelebihan:**
-  - **Tidak Mengalami *Cold Start* untuk Item Baru**: Karena CBF didasarkan pada atribut konten item (misalnya genre, aktor, sutradara untuk film), item baru dengan deskripsi konten yang lengkap dapat segera direkomendasikan kepada pengguna.
-  - **Independen dari Data Pengguna Lain**: CBF berfokus pada preferensi individu, sehingga tidak bergantung pada perilaku pengguna lain. Hal ini memungkinkan privasi pengguna tetap terjaga dan menghindari masalah yang terkait dengan perilaku kolektif.
-  - **Rekomendasi Lebih Terfokus**: Karena CBF memanfaatkan kesamaan antara konten item yang disukai pengguna, rekomendasi yang dihasilkan cenderung konsisten dan sesuai dengan preferensi konten yang sudah diketahui.
 
-  **Kekurangan:**
-  - **Keterbatasan dalam Mengeksplorasi Konten Baru**: CBF cenderung merekomendasikan item yang serupa dengan yang sudah pernah disukai pengguna. Akibatnya, sistem kurang mampu memperkenalkan item-item baru yang mungkin berbeda namun tetap menarik bagi pengguna.
-  - **Memerlukan Deskripsi Konten yang Mendetail**: Untuk menghasilkan rekomendasi yang baik, item harus memiliki atribut konten yang rinci dan relevan. Jika informasi ini tidak lengkap, akurasi rekomendasi dapat menurun.
-  - **Terlalu Bergantung pada Preferensi Pengguna yang Terbatas**: Jika seorang pengguna memiliki riwayat interaksi yang sangat terbatas, rekomendasi yang diberikan bisa sangat terbatas dan tidak bervariasi.
+   **Kelebihan:**
+    - **Tidak Mengalami *Cold Start* untuk Item Baru**: Karena CBF didasarkan pada atribut konten item (misalnya genre, aktor, sutradara untuk film), item baru dengan deskripsi konten yang lengkap dapat segera direkomendasikan kepada pengguna.
+    - **Independen dari Data Pengguna Lain**: CBF berfokus pada preferensi individu, sehingga tidak bergantung pada perilaku pengguna lain. Hal ini memungkinkan privasi pengguna tetap terjaga dan menghindari masalah yang terkait dengan perilaku kolektif.
+    - **Rekomendasi Lebih Terfokus**: Karena CBF memanfaatkan kesamaan antara konten item yang disukai pengguna, rekomendasi yang dihasilkan cenderung konsisten dan sesuai dengan preferensi konten yang sudah diketahui.
 
-  **Tahapan dalam menggunakan Content Based Filtering:**
-  - Cek data pada dictionary yang telah dibuat.
-  - Inisialisasi TfidVectorizer, adalah alat yang hebat untuk mengubah data teks menjadi fitur numerik, yang membuatnya penting untuk banyak tugas Pemrosesan Bahasa Alami (NLP).
-  - Melakukan fit transformation matrix.
-  - Mengubah vector dengan fitur todense().
-  - Membuat dataframe untuk tf-idf matrix.
-  - Menghitung cosine similarity dan membuat variabel.
-  - Membuat fungsi rekomendasi.
-  - Mendapatkan rekomendasi yang telah dibuat.
+   **Kekurangan:**
+    - **Keterbatasan dalam Mengeksplorasi Konten Baru**: CBF cenderung merekomendasikan item yang serupa dengan yang sudah pernah disukai pengguna. Akibatnya, sistem kurang mampu memperkenalkan item-item baru yang mungkin berbeda namun tetap menarik bagi pengguna.
+    - **Memerlukan Deskripsi Konten yang Mendetail**: Untuk menghasilkan rekomendasi yang baik, item harus memiliki atribut konten yang rinci dan relevan. Jika informasi ini tidak lengkap, akurasi rekomendasi dapat menurun.
+    - **Terlalu Bergantung pada Preferensi Pengguna yang Terbatas**: Jika seorang pengguna memiliki riwayat interaksi yang sangat terbatas, rekomendasi yang diberikan bisa sangat terbatas dan tidak bervariasi.
+
+   **Tahapan dalam menggunakan Content Based Filtering:**
+    - Cek data pada dictionary yang telah dibuat.
+    - Inisialisasi TfidVectorizer, adalah alat yang hebat untuk mengubah data teks menjadi fitur numerik, yang membuatnya penting untuk banyak tugas Pemrosesan Bahasa Alami (NLP).
+    - Melakukan fit transformation matrix.
+    - Mengubah vector dengan fitur todense().
+    - Membuat dataframe untuk tf-idf matrix.
+    - Menghitung cosine similarity dan membuat variabel.
+    - Membuat fungsi rekomendasi.
+    - Mendapatkan rekomendasi yang telah dibuat.
+
 
 2. ***Collaborative Filtering***
-  **Kelebihan:**
-  - **Personalized Recommendations**: CF dapat memberikan rekomendasi yang sangat personal berdasarkan preferensi dan perilaku pengguna serupa. Misalnya, jika pengguna lain dengan selera serupa menyukai film tertentu, sistem akan merekomendasikan film tersebut.
-  - **Tidak Bergantung pada Konten**: CF tidak memerlukan data spesifik tentang karakteristik atau atribut dari item (seperti genre atau deskripsi film), sehingga cocok untuk berbagai jenis data, bahkan yang tidak memiliki deskripsi konten rinci.
-  - **Dapat Mengungkap Preferensi yang Tidak Terduga**: Karena CF didasarkan pada perilaku kolektif pengguna, sistem dapat merekomendasikan item yang mungkin tidak akan ditemukan pengguna jika hanya mengandalkan atribut konten.
 
-  **Kekurangan:**
-  - **Masalah *Cold Start***: Jika ada pengguna baru atau item baru yang tidak memiliki riwayat interaksi, CF sulit memberikan rekomendasi yang akurat karena kurangnya data.
-  - **Scalability Issue**: Pada skala besar, dengan jutaan pengguna dan item, algoritma CF bisa menjadi tidak efisien dan memerlukan sumber daya komputasi besar.
-  - ***Sparsity Problem***: Dalam dataset besar, interaksi antara pengguna dan item cenderung jarang (*sparse*), sehingga sulit untuk menemukan pola yang cukup untuk menghasilkan rekomendasi yang akurat.
+   **Kelebihan:**
+    - **Personalized Recommendations**: CF dapat memberikan rekomendasi yang sangat personal berdasarkan preferensi dan perilaku pengguna serupa. Misalnya, jika pengguna lain dengan selera serupa menyukai film tertentu, sistem akan merekomendasikan film tersebut.
+    - **Tidak Bergantung pada Konten**: CF tidak memerlukan data spesifik tentang karakteristik atau atribut dari item (seperti genre atau deskripsi film), sehingga cocok untuk berbagai jenis data, bahkan yang tidak memiliki deskripsi konten rinci.
+    - **Dapat Mengungkap Preferensi yang Tidak Terduga**: Karena CF didasarkan pada perilaku kolektif pengguna, sistem dapat merekomendasikan item yang mungkin tidak akan ditemukan pengguna jika hanya mengandalkan atribut konten.
 
-  **Tahapan dalam menggunakan Collaborative Filtering:**
-  - Membaca dataset rating film.
-  - Encode data user dan title.
-  - Mempetakan `userId` dan `movieId`.
-  - Cek mapping.
-  - Mengacak data untuk train dan test.
-  - Membagi data untuk train dan test.
+   **Kekurangan:**
+    - **Masalah *Cold Start***: Jika ada pengguna baru atau item baru yang tidak memiliki riwayat interaksi, CF sulit memberikan rekomendasi yang akurat karena kurangnya data.
+    - **Scalability Issue**: Pada skala besar, dengan jutaan pengguna dan item, algoritma CF bisa menjadi tidak efisien dan memerlukan sumber daya komputasi besar.
+    - ***Sparsity Problem***: Dalam dataset besar, interaksi antara pengguna dan item cenderung jarang (*sparse*), sehingga sulit untuk menemukan pola yang cukup untuk menghasilkan rekomendasi yang akurat.
+
+   **Tahapan dalam menggunakan Collaborative Filtering:**
+    - Membaca dataset rating film.
+    - Encode data user dan title.
+    - Mempetakan `userId` dan `movieId`.
+    - Cek mapping.
+    - Mengacak data untuk train dan test.
+    - Membagi data untuk train dan test.
+
 
 3. ***Kesimpulan:***
-  - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
-  - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
+    - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
+    - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
 
 Pendekatan hybrid yang menggabungkan kedua metode ini dapat mengurangi kekurangan dari masing-masing pendekatan dengan memanfaatkan kelebihannya secara bersamaan.
 
@@ -129,8 +138,10 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
 3. Melakukan proses training model.
 4. Menampilkan plot evaluasi.
 
-  Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
-5. Mendapatkan rekomendasi film.
+   ![plot rekomendasi](https://github.com/user-attachments/assets/442a11f7-31ca-4605-a50c-4a18213e251c)
+
+   Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
+6. Mendapatkan rekomendasi film.
 
 ---
 ## Kesimpulan
