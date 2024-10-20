@@ -50,7 +50,7 @@ Pada berkas yang diunduh yakni movie-recommendation-data.zip berisi satu folder 
 
 Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemrosesan data, yaitu:
 1. Menampilkan dataset untuk mengetahui variabel yang digunakan.
-2. Melihat isi dataset dengan fungsi `head() ` setiap dataframe.
+2. Melihat isi dataset dengan fungsi `head()` setiap dataframe.
 3. Menampikan data unik untuk `movieId` dan `userId`.
 4. Mendeskripsikan nilai statisika pada dataset `ratings`.
 5. Memvisualisasikan hasil evaluasi data train dan test.
