@@ -97,9 +97,21 @@ title_info('Movies Info', movies_df)
 title_info('Ratings Info', ratings_df)
 title_info('Tags Info', tags_df)
 
-"""**5. Menampilkan data kosong pada `links.csv`**"""
+"""**5. Mengatasi data kosong pada `links.csv`**
+
+Mengecek data kosong pada `links.csv`
+"""
 
 links_df.isnull().sum()
+
+links_df.loc[links_df['tmdbId'].isnull()]
+
+"""Menghapus data kosong berdasarkan kolom"""
+
+links_df.drop(links_df.loc[links_df['tmdbId'].isnull()].index, inplace=True)
+links_df.isnull().sum()
+
+links_df.info()
 
 """**6. Mencetak entri unik berdasarkan `movieId` dan jenis `genres`**"""
 
@@ -115,6 +127,51 @@ ratings_df.describe()
 print('Jumlah `userId` : ', len(ratings_df['userId'].unique()))
 print('Jumlah `movieId` : ', len(ratings_df['movieId'].unique()))
 print('Jumlah `rating` : ', len(ratings_df))
+
+"""**9. Menampilkan nilai outliers**"""
+
+sns.boxplot(x=ratings_df['rating'])
+plt.show()
+
+"""Dari boxplot diatas, kita dapat mengidentifikasi **outliers** (pencilan) dalam data:
+
+1. **Garis tengah kotak** menunjukkan **median** dari data `rating`.
+2. **Kotak** menunjukkan rentang dari **kuartil pertama (Q1)** hingga **kuartil ketiga (Q3)**, menggambarkan **interquartile range (IQR)**, yaitu rentang tengah 50% dari data.
+3. **Garis-garis horizontal** (whiskers) yang keluar dari kotak menunjukkan rentang data di luar Q1 dan Q3, umumnya diperpanjang hingga 1,5 kali IQR dari kuartil terendah (Q1) dan tertinggi (Q3).
+4. **Titik-titik** di luar whiskers adalah **outliers**. Titik-titik ini mewakili nilai yang berada di luar rentang 1,5 kali IQR dari Q1 dan Q3, menandakan nilai `rating` yang jauh dari mayoritas data.
+
+**10. Membatasi nilai outliers menggunakan metode IQR**
+"""
+
+Q1 = ratings_df['rating'].quantile(0.25)
+Q3 = ratings_df['rating'].quantile(0.75)
+IQR = Q3 - Q1
+
+ratings_df = ratings_df[~((ratings_df['rating'] < (Q1 - 1.5 * IQR)) | (ratings_df['rating'] > (Q3 + 1.5 * IQR)))]
+ratings_df.shape
+
+"""Dari hasil pembatasan outliers diatas data rating menjadi 96.655 data, yang semula 100836 data sebelum dilakukannya outliers.
+
+**11. Menampilkan dataset outliers yang telah dibersihkan**
+"""
+
+ratings_df.info()
+
+"""**12. Mengecek data duplikat dari setiap dataset**"""
+
+# Mengecek duplikat di setiap dataframe
+def check_duplicates(df, df_name):
+    duplicate_rows = df[df.duplicated()]
+    if not duplicate_rows.empty:
+        print(f"{df_name}: Terdapat {len(duplicate_rows)} baris duplikat")
+        print(duplicate_rows.head())  # Menampilkan contoh duplikat
+    else:
+        print(f"{df_name}: Tidak ada duplikat")
+
+check_duplicates(links_df, 'links_df')
+check_duplicates(movies_df, 'movies_df')
+check_duplicates(ratings_df, 'ratings_df')
+check_duplicates(tags_df, 'tags_df')
 
 """## **Data Preparation**
 
@@ -284,11 +341,11 @@ def movies_recommendation(title, similarity_data=cosine_sim_df, items=movies_dat
 
 """**9. Mendapatkan film yang disukai pengguna**"""
 
-movies_data[movies_data.title.eq('Superman II (1980)')]
+movies_data[movies_data.title.eq('Zelary (2003)')]
 
 """**10. Mendapatkan rekomendasi film**"""
 
-movies_recommendation('Superman II (1980)')
+movies_recommendation('Zelary (2003)')
 
 """### **Collaborative Filtering**
 
@@ -497,3 +554,25 @@ print('-' * 32)
 # Menampilkan 10 film teratas yang direkomendasikan
 for _, row in movies_df[movies_df['movieId'].isin(recommended_movie_ids)].iterrows():
     print(f"{row.title} : {row.genres}")
+
+# Menampilkan rekomendasi untuk pengguna
+print(f'Menampilkan rekomendasi untuk pengguna: {user_id}')
+print('=' * 50)
+
+# Menampilkan 5 film dengan rating tertinggi dari pengguna dalam bentuk tabel
+top_movies_user_df = movies_df[movies_df['movieId'].isin(top_movies_user)][['title', 'genres']]
+top_movies_user_df.columns = ['Title', 'Genres']  # Menyusun ulang nama kolom
+
+print('Film dengan rating tertinggi dari pengguna:')
+print('-' * 50)
+print(top_movies_user_df.to_string(index=False))
+
+print('\n' + '-' * 50)
+
+# Menampilkan 10 film teratas yang direkomendasikan dalam bentuk tabel
+recommended_movies_df = movies_df[movies_df['movieId'].isin(recommended_movie_ids)][['title', 'genres']]
+recommended_movies_df.columns = ['Title', 'Genres']  # Menyusun ulang nama kolom
+
+print('10 film teratas yang direkomendasikan:')
+print('-' * 50)
+print(recommended_movies_df.to_string(index=False))
