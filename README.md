@@ -4,7 +4,7 @@
 ## Project Overview
 Budaya menonton acara TV dan film sekarang ini dipermudah dengan adanya internet. Platform streaming seperti Netflix, HBO Max dan Disney+ memberikan lebih banyak fleksibilitas kepada pengguna untuk menonton acara TV dan film favorit mereka, kapan saja dan di perangkat apa pun. Jumlah acara TV atau film yang disediakan oleh masingmasing platform ini pun bisa dibilang cukup besar, dengan salah satu platform seperti netflix memiliki katalog berkisaran 6000 item acara TV dan film.
 Dengan banyaknya jumlah item yang disediakan, sistem rekomendasi menjadi fitur penting untuk dibangun dan memiliki peran besar dalam membantu pengguna menemukan item relevan yang mungkin mereka sukai. Selain itu, dari sudut pandang bisnis, sistem rekomendasi dapat membantu meningkatkan waktu aktfitas pengguna di dalam suatu platform
-dengan cara menampilkan item-item relevan kepada pengguna, yang mana nantinya seiring waktu dapat meningkatkan pendapatan untuk pelatform itu sendiri. Oleh karena itu, sistem rekomendasi merupakan salah satu fitur penting yang harus dimiliki oleh platform-platform seperti layanan streaming acara TV dan film. Sistem rekomendasi pada dasarnya merupakan sistem yang berguna untuk menyaring dan mengidentifikasi item berupa produk, layanan atau informasi yang memiliki potensi besar untuk dipilih, dibeli ataupun digunakan oleh pengguna. Terdapat beberapa metode yang dapat digunakan dalam membangun sistem rekomendasi, seperti collaborative filtering (CF) yang merekomendasikan item berdasar kemiripan pengguna dalam hal memilih atau memberi nilai kepada item dan content-based filtering (CBF) yang merekomendasikan item berdasarkan kemiripan item dalam hal isi atau konten item yang disukai oleh pengguna. Namun perlu diketahui, masing-masing metode ini memiliki kelemahan. Untuk menutupi kelemahan masing-masing metode ini, pendekatan hybrid dapat dilakukan dimana kedua metode ini digabungkan dengan harapan dapat mengurangi kelemahan dari satu metode melalui kelebihan dari satu metode lainnya dan menghasilkan sistem rekomendasi yang lebih baik.[[1](https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/18066)]
+dengan cara menampilkan item-item relevan kepada pengguna, yang mana nantinya seiring waktu dapat meningkatkan pendapatan untuk pelatform itu sendiri. Oleh karena itu, sistem rekomendasi merupakan salah satu fitur penting yang harus dimiliki oleh platform-platform seperti layanan streaming acara TV dan film. Sistem rekomendasi pada dasarnya merupakan sistem yang berguna untuk menyaring dan mengidentifikasi item berupa produk, layanan atau informasi yang memiliki potensi besar untuk dipilih, dibeli ataupun digunakan oleh pengguna. Terdapat beberapa metode yang dapat digunakan dalam membangun sistem rekomendasi, seperti collaborative filtering (CF) yang merekomendasikan item berdasar kemiripan pengguna dalam hal memilih atau memberi nilai kepada item dan content-based filtering (CBF) yang merekomendasikan item berdasarkan kemiripan item dalam hal isi atau konten item yang disukai oleh pengguna.[[1](https://openlibrarypublications.telkomuniversity.ac.id/index.php/engineering/article/view/18066)]
 
 Proyek sistem rekomendasi film penting untuk diselesaikan karena platform streaming seperti Netflix, HBO Max, dan Disney+ memiliki ribuan item dalam katalognya. Pengguna dapat merasa kewalahan dalam memilih acara TV atau film yang relevan dengan preferensi mereka. Sistem rekomendasi berperan besar dalam menyaring item-item tersebut agar pengguna lebih mudah menemukan konten yang mereka sukai, yang pada akhirnya meningkatkan kepuasan dan loyalitas mereka terhadap platform tersebut. Dari sudut pandang bisnis, sistem rekomendasi yang efektif juga dapat meningkatkan waktu yang dihabiskan pengguna pada platform, yang pada gilirannya dapat meningkatkan pendapatan platform melalui perpanjangan langganan atau iklan.
 
@@ -14,19 +14,16 @@ Proyek sistem rekomendasi film penting untuk diselesaikan karena platform stream
 Berdasarkan latar belakang diatas, berikut ini rumusan masalah yang dapat diselesaikan pada proyek ini:
 - Bagaimana cara membangun sistem rekomendasi film yang efektif dan akurat untuk meningkatkan pengalaman pengguna dan waktu aktivitas mereka di platform streaming?
 - Metode apa yang dapat digunakan untuk mengoptimalkan rekomendasi film agar sesuai dengan preferensi pengguna?
-- Bagaimana menggabungkan berbagai pendekatan, seperti *collaborative filtering* dan *content-based filtering*, untuk mengatasi kelemahan masing-masing metode dan menghasilkan sistem rekomendasi yang lebih baik?
 
 ### Goals Statements
 Berdasarkan rumusan masalah diatas, berikut ini tujuan yang dapat diselesaikan pada proyek ini:
 - Mengembangkan sistem rekomendasi film yang dapat membantu pengguna menemukan konten yang relevan dengan preferensi mereka secara lebih efisien.
 - Menggabungkan pendekatan *collaborative filtering* dan *content-based filtering* untuk meningkatkan akurasi dan efektivitas sistem rekomendasi.
-- Meningkatkan waktu aktivitas pengguna di platform dan pada akhirnya, membantu meningkatkan pendapatan melalui kepuasan dan keterlibatan pengguna yang lebih tinggi.
 
 ### Solution Statements
 Berdasarkan tujuan diatas, berikut ini solusi yang dapat diselesaikan pada proyek ini:
 - Membangun sistem rekomendasi film berbasis *collaborative filtering* untuk merekomendasikan film berdasarkan kemiripan pengguna lain dengan perilaku serupa.
 - Menggunakan *content-based filtering* untuk merekomendasikan film berdasarkan atribut atau karakteristik film yang disukai oleh pengguna.
-- Mengimplementasikan pendekatan hybrid yang menggabungkan kedua metode tersebut untuk memaksimalkan kelebihan dan meminimalkan kekurangan masing-masing metode, sehingga dapat memberikan rekomendasi yang lebih akurat dan personal kepada pengguna.
 
 ---
 ## Data Understanding
@@ -40,20 +37,32 @@ Lisensi | Unknown
 Kategori | Movies and TV Shows, Recommender Systems
 Jenis dan Ukuran Berkas | ZIP (13.1M)
 
-Pada berkas yang diunduh yakni movie-recommendation-data.zip berisi satu folder dengan isi data links.csv, movies.csv, ratings.csv, tags.csv untuk rincian variabel dapat dilihat pada gambar berikut:
+Berikut informasi mengenai jumlah data, tipe data, data statisika, dan informasi data hilang (missing value) yang terdapat pada dataset ini:
 
 ![Screenshot 2024-10-21 010141](https://github.com/user-attachments/assets/8008f841-6817-4412-bf3d-0d54318870fd)
+
+Pada berkas links.csv berisi 9742 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 2 kolom berisi tipe data `int64`.
+
 ![Screenshot 2024-10-21 010155](https://github.com/user-attachments/assets/2f7af2b3-cc6c-47fb-91c4-b4c18900c151)
+
+Pada berkas movies.csv berisi 9742 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `int64`, dan 2 kolom berisi tipe data `object`.
+
 ![Screenshot 2024-10-21 010210](https://github.com/user-attachments/assets/60087f32-e565-4876-b0fb-52311b1e9e57)
+
+Pada berkas ratings.csv berisi 100.836 baris x 6 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 5 kolom berisi tipe data `int64`.
+
 ![Screenshot 2024-10-21 010226](https://github.com/user-attachments/assets/90a18231-a03a-48d7-8b86-ff1b13fcf9ce)
 
+Pada berkas tags.csv berisi 3683 baris x 4 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `object`, dan 3 kolom berisi tipe data `int64`.
 
 Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemrosesan data, yaitu:
 1. Menampilkan dataset untuk mengetahui variabel yang digunakan.
 2. Melihat isi dataset dengan fungsi `head()` setiap dataframe.
 3. Menampikan data unik untuk `movieId` dan `userId`.
-4. Mendeskripsikan nilai statisika pada dataset `ratings`.
-5. Memvisualisasikan hasil evaluasi data train dan test.
+4. Mendeskripsikan nilai statisika pada dataset `ratings` menggunakan `describe()`.
+5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
+6. Membersihkan missing value menggunakan fungsi `dropna()`.
+7. Memvisualisasikan hasil evaluasi data train dan test.
 
 ---
 ## Data Preparation
@@ -61,20 +70,22 @@ Berikut adalah tahapan dalam melakukan data preparation:
 
 1. Menggabungkan seluruh `movieId` pada kategori film.
 2. Menggabungkan seluruh `userId` pada kategori film.
-3. Menggabungkan file `links, movies, ratings, dan tags`.
-4. Cek missing value dengan fungsi isnull(), untuk mengatasi data kosong.
-5. Menghitung jumlah rating berdasarkan `movieId`.
-6. Menggabungkan seluruh data film dengan rating.
-7. Menggabungkan seluruh data film dengan data film berdasarkan `movieId`.
-8. Menggabungkan seluruh data film dengan data tags berdasarkan `movieId`.
-9. Mengatasi missing value pada movies_all_data_df.
-10. Membersihkan missing value menggunakan fungsi dropna().
-11. Mengurutkan film berdasarkan `movieId`.
-12. Mengecek jumlah movies_fix_df.
-13. Membuat variabel movies_preparation_df yang berisi movies_fix_df kemudian mengurutkan berdasarkan `movieId`.
-14. Membuang data duplikat pada variabel movies_preparation_df.
-15. Mengonversi data series menjadi dalam bentuk list.
-16. Membuat dictionary, berfungsi untuk pembuatan model.
+3. Menggabungkan file `links`, `movies`, `ratings`, dan `tags`.
+4. Menghitung jumlah rating berdasarkan `movieId`.
+5. Menggabungkan seluruh data film dengan rating.
+6. Menggabungkan seluruh data film dengan data film berdasarkan `movieId`.
+7. Menggabungkan seluruh data film dengan data tags berdasarkan `movieId`.
+8. Mengatasi missing value pada movies_all_data_df.
+9. Mengurutkan film berdasarkan `movieId`.
+10. Mengecek jumlah movies_fix_df.
+11. Membuat variabel movies_preparation_df yang berisi movies_fix_df kemudian mengurutkan berdasarkan `movieId`.
+12. Membuang data duplikat pada variabel movies_preparation_df.
+13. Mengonversi data series menjadi dalam bentuk list.
+14. Membuat dictionary, berfungsi untuk pembuatan model.
+15. Inisialisasi TfidVectorizer adalah alat yang hebat untuk mengubah data teks menjadi fitur numerik, yang membuatnya penting untuk banyak tugas Pemrosesan Bahasa Alami (NLP).
+16. Encode data penting untuk mengubah data kategorikal (userId) menjadi numerik dan sebaliknya, yang biasa digunakan dalam pembelajaran mesin untuk merepresentasikan data.
+17. Pemetaan data kolom user dan movie dalam dataframe ratings berisi representasi terkode dari userId dan movieId, yang biasanya lebih efisien untuk digunakan dalam algoritma machine learning seperti model rekomendasi.
+18. Membuat data untuk train dan test.
 
 ---
 ## Model Development
@@ -99,6 +110,7 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Mengubah vector dengan fitur todense().
     - Membuat dataframe untuk tf-idf matrix.
     - Menghitung cosine similarity dan membuat variabel.
+        Cosine similarity adalah metode untuk mengukur kemiripan antara dua vektor dalam ruang multidimensi. Biasanya digunakan dalam analisis teks, data produk, atau pengguna untuk menghitung sejauh mana dua entitas memiliki kesamaan. Nilai kemiripan yang dihasilkan berkisar antara -1 hingga 1, di mana 1 menunjukkan vektor sepenuhnya sama (kemiripan maksimum). 0 menunjukkan vektor ortogonal atau tidak ada kemiripan. -1 menunjukkan vektor berlawanan arah.
     - Membuat fungsi rekomendasi.
     - Mendapatkan rekomendasi yang telah dibuat.
 
@@ -123,33 +135,66 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Mengacak data untuk train dan test.
     - Membagi data untuk train dan test.
 
-
 3. ***Kesimpulan:***
     - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
     - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
+    Pendekatan hybrid yang menggabungkan kedua metode ini dapat mengurangi kekurangan dari masing-masing pendekatan dengan memanfaatkan kelebihannya secara bersamaan.
 
-Pendekatan hybrid yang menggabungkan kedua metode ini dapat mengurangi kekurangan dari masing-masing pendekatan dengan memanfaatkan kelebihannya secara bersamaan.
+4. Membuat class RecommenderNet, merupakan model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
 
 ---
 ## Evaluation
 Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Evaluation* terhadap data, diantaranya sebagai berikut:
-1. Membuat class RecommenderNet adalah model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
-2. Melakukan proses compile model.
-3. Melakukan proses training model.
-4. Menampilkan plot evaluasi.
 
-   ![plot rekomendasi](https://github.com/user-attachments/assets/442a11f7-31ca-4605-a50c-4a18213e251c)
+1. Model RecommenderNet dikompilasi menggunakan dua elemen penting: loss function (fungsi kerugian) dan metric (metrik evaluasi). Berikut adalah penjelasan mengenai hasil proyek berdasarkan metrik evaluasi yang digunakan:
+    - **Loss Function (Binary Crossentropy)**
+        - **BinaryCrossentropy** digunakan untuk menghitung seberapa besar kesalahan yang dihasilkan model dalam memprediksi keluaran biner (dalam hal ini mungkin rating seperti "suka" atau "tidak suka" terhadap suatu item).
+        - Fungsi kerugian ini akan mengukur perbedaan antara nilai prediksi model dan nilai sebenarnya. Nilai kerugian yang lebih rendah menunjukkan bahwa model lebih baik dalam membuat prediksi yang benar.
+   
+    - **Metrik Evaluasi (Root Mean Squared Error - RMSE)**
+        - **Root Mean Squared Error (RMSE)** adalah metrik yang digunakan untuk mengevaluasi kualitas prediksi model. Ini mengukur seberapa jauh prediksi model dari nilai aktual dalam satuan asli dari target (misalnya, rating film atau produk).
+        - **Cara Menghitung RMSE**:
+            - RMSE adalah akar kuadrat dari rata-rata nilai kuadrat dari kesalahan prediksi. Semakin kecil nilai RMSE, semakin akurat model dalam memprediksi.
+            - Jika nilai RMSE mendekati nol, ini berarti model berhasil memprediksi nilai yang sangat mendekati nilai sebenarnya.
+   
+    - **Rumus RMSE**:
+        \[
+        RMSE = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y_i})^2}
+        \]
+        Di mana:
+        - \( N \) adalah jumlah sampel.
+        - \( y_i \) adalah nilai aktual.
+        - \( \hat{y_i} \) adalah nilai prediksi.
 
-   Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
-6. Mendapatkan rekomendasi film.
+    - **Interpretasi Hasil**
+        - **Binary Crossentropy**: Setelah model dilatih, nilai *loss* (kerugian) akan memberikan indikasi seberapa jauh model dari hasil ideal. Jika *loss* sangat rendah, ini menunjukkan model memiliki prediksi yang baik dalam hal klasifikasi biner (misalnya, apakah seorang pengguna menyukai sebuah item atau tidak).
+        - **RMSE**: Metrik RMSE akan menunjukkan akurasi prediksi model. Nilai RMSE yang kecil menunjukkan bahwa prediksi rating atau preferensi dari model mendekati nilai rating yang sesungguhnya. Sebaliknya, nilai RMSE yang tinggi menunjukkan bahwa prediksi model masih jauh dari hasil sebenarnya.
+
+        Secara umum, setelah proses pelatihan model selesai:
+        - **Jika loss rendah dan RMSE kecil**: Ini berarti model berhasil memberikan rekomendasi yang akurat.
+        - **Jika loss atau RMSE tinggi**: Model mungkin memerlukan penyesuaian, seperti perubahan arsitektur, *hyperparameter tuning*, atau penambahan lebih banyak data untuk pelatihan.
+
+        Hasil akhir proyek akan sangat dipengaruhi oleh nilai dari kedua metrik ini, yang memberi wawasan tentang seberapa efektif model dalam memberikan rekomendasi yang relevan.
+
+2. Menampilkan plot evaluasi.
+
+    ![plot rekomendasi](https://github.com/user-attachments/assets/442a11f7-31ca-4605-a50c-4a18213e251c)
+
+    Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
+
+3. Mendapatkan rekomendasi film.
 
 ---
 ## Kesimpulan
-Kesimpulan dari proyek sistem rekomendasi film adalah bahwa platform streaming memerlukan sistem rekomendasi yang efektif untuk membantu pengguna menemukan konten yang relevan di tengah banyaknya pilihan yang tersedia. Sistem rekomendasi ini tidak hanya penting untuk meningkatkan pengalaman pengguna, tetapi juga berperan dalam memperpanjang waktu aktivitas pengguna di platform, yang pada akhirnya dapat meningkatkan pendapatan platform.
+Proyek sistem rekomendasi film sangat relevan dalam konteks platform streaming seperti Netflix, HBO Max, dan Disney+ yang menyediakan ribuan item dalam katalognya. Dengan jumlah konten yang begitu besar, pengguna sering merasa kesulitan memilih acara TV atau film yang sesuai dengan preferensi mereka. Sistem rekomendasi menjadi kunci untuk meningkatkan pengalaman pengguna dengan mempermudah mereka menemukan konten yang relevan dan menarik.
 
-Untuk mencapai hal tersebut, rumusan masalah berfokus pada bagaimana mengembangkan sistem yang akurat dan efisien dengan menggabungkan berbagai pendekatan seperti *collaborative filtering* dan *content-based filtering*. Tujuan proyek adalah menciptakan sistem yang dapat memberikan rekomendasi yang lebih personal dan relevan bagi pengguna.
+Dari sudut pandang bisnis, sistem rekomendasi yang efektif tidak hanya meningkatkan kepuasan pengguna, tetapi juga berpotensi memperpanjang waktu aktivitas pengguna di platform. Hal ini, pada akhirnya, dapat meningkatkan pendapatan melalui langganan atau iklan.
 
-Solusi yang diusulkan adalah mengimplementasikan pendekatan hybrid, yang menggabungkan kekuatan kedua metode untuk mengatasi kelemahan masing-masing. Dengan pendekatan ini, sistem rekomendasi diharapkan mampu memberikan rekomendasi yang lebih baik dan meningkatkan kepuasan serta keterlibatan pengguna di platform.
+Dalam rangka mencapai tujuan tersebut, proyek ini akan mengembangkan sistem rekomendasi dengan memanfaatkan kombinasi metode *collaborative filtering* dan *content-based filtering*. Pendekatan ini diharapkan dapat meningkatkan akurasi dan efektivitas rekomendasi, dengan:
+1. *Collaborative filtering*: Merekomendasikan film berdasarkan kesamaan preferensi atau perilaku pengguna lain.  
+2. *Content-based filtering*: Merekomendasikan film berdasarkan karakteristik konten yang sudah disukai oleh pengguna.
+
+Dengan penerapan solusi ini, diharapkan sistem rekomendasi yang dibangun dapat memberikan pengalaman yang lebih personal bagi pengguna sekaligus membantu platform streaming mencapai tujuan bisnis mereka.
 
 ---
 ## Penutup
