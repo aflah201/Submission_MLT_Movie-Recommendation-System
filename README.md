@@ -59,7 +59,7 @@ movieId | Merupakan id film. | `int64`
 title | Merupakan judul film. | `object`
 genres | merupakan kategori film. | `object`
 
-![Screenshot 2024-10-21 010210](https://github.com/user-attachments/assets/60087f32-e565-4876-b0fb-52311b1e9e57)
+![Screenshot 2024-10-21 133954](https://github.com/user-attachments/assets/8672e229-2c27-4031-abb6-ad1f1fa6e660)
 
 Pada berkas ratings.csv berisi 100.836 baris x 6 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 5 kolom berisi tipe data `int64`.
 Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
@@ -87,8 +87,6 @@ Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemros
 3. Menampikan data unik untuk `movieId` dan `userId`.
 4. Mendeskripsikan nilai statisika pada dataset `ratings` menggunakan `describe()`.
 5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
-6. Membersihkan missing value menggunakan fungsi `dropna()`.
-7. Memvisualisasikan hasil evaluasi data train dan test.
 
 ---
 ## Data Preparation
