@@ -97,16 +97,20 @@ title_info('Movies Info', movies_df)
 title_info('Ratings Info', ratings_df)
 title_info('Tags Info', tags_df)
 
-"""**5. Mencetak entri unik berdasarkan `movieId` dan jenis `genres`**"""
+"""**5. Menampilkan data kosong pada `links.csv`**"""
+
+links_df.isnull().sum()
+
+"""**6. Mencetak entri unik berdasarkan `movieId` dan jenis `genres`**"""
 
 print('Banyak data entri unik berdasarkan `movieId` : ', movies_df['movieId'].nunique())
 print('Jenis genre film : ', movies_df['genres'].unique())
 
-"""**6. Mendeskripsikan variabel statisika dari `ratings`**"""
+"""**7. Mendeskripsikan variabel statisika dari `ratings`**"""
 
 ratings_df.describe()
 
-"""**7. Mencetak jumlah `userId`, `movieId`, dan `rating` pada dataset ratings**"""
+"""**8. Mencetak jumlah `userId`, `movieId`, dan `rating` pada dataset ratings**"""
 
 print('Jumlah `userId` : ', len(ratings_df['userId'].unique()))
 print('Jumlah `movieId` : ', len(ratings_df['movieId'].unique()))
@@ -489,3 +493,19 @@ print('-' * 32)
 # Menampilkan 10 film teratas yang direkomendasikan
 for _, row in movies_df[movies_df['movieId'].isin(recommended_movie_ids)].iterrows():
     print(f"{row.title} : {row.genres}")
+
+# Membuat tabel untuk film dengan rating tertinggi dari pengguna
+top_movies_user_df = movies_df[movies_df['movieId'].isin(top_movies_user)][['title', 'genres']]
+print(f'Menampilkan rekomendasi untuk pengguna: {user_id}')
+print('=' * 50)
+print('Film dengan rating tertinggi dari pengguna:')
+print('-' * 50)
+print(top_movies_user_df.to_string(index=False))
+
+print('\n' + '-' * 50)
+print('10 film teratas yang direkomendasikan:')
+print('-' * 50)
+
+# Membuat tabel untuk 10 film teratas yang direkomendasikan
+recommended_movies_df = movies_df[movies_df['movieId'].isin(recommended_movie_ids)][['title', 'genres']]
+print(recommended_movies_df.to_string(index=False))
