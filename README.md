@@ -140,7 +140,6 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Mengubah vector dengan fitur todense().
     - Membuat dataframe untuk tf-idf matrix.
     - Menghitung cosine similarity dan membuat variabel.
-        Cosine similarity adalah metode untuk mengukur kemiripan antara dua vektor dalam ruang multidimensi. Biasanya digunakan dalam analisis teks, data produk, atau pengguna untuk menghitung sejauh mana dua entitas memiliki kesamaan. Nilai kemiripan yang dihasilkan berkisar antara -1 hingga 1, di mana 1 menunjukkan vektor sepenuhnya sama (kemiripan maksimum). 0 menunjukkan vektor ortogonal atau tidak ada kemiripan. -1 menunjukkan vektor berlawanan arah.
     - Membuat fungsi rekomendasi.
     - Mendapatkan rekomendasi yang telah dibuat.
         - Berikut ini adalah hasil film yang disukai pengguna:
@@ -185,12 +184,70 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Cek mapping.
     - Mengacak data untuk train dan test.
     - Membagi data untuk train dan test.
+    - Berikut ini adalah hasil Top Rekomendasi
+      Menampilkan rekomendasi untuk pengguna: 462
+   
+      Film dengan rating tertinggi dari pengguna:
+      Titles | Genres
+      --- | ---
+      Taxi Driver (1976) | Crime\|Drama\|Thriller
+      Heavenly Creatures (1994) | Crime\|Drama
+      Godfather, The (1972) | Crime\|Drama
+      Monty Python's Life of Brian (1979) | Comedy
+      Raging Bull (1980) | Drama
+   
+      10 film teratas yang direkomendasikan:
+      Titles | Genres
+      --- | ---
+      Place in the Sun, A (1951) | Drama\|Romance
+      My Life (1993) | Drama
+      Crossing Delancey (1988) | Comedy\|Romance
+      Woman Under the Influence, A (1974) | Drama
+      Adam's Rib (1949) | Comedy\|Romance
+      Into the Woods (1991) | Adventure\|Comedy\|Fantasy\|Musical
+      Match Factory Girl, The (Tulitikkutehtaan tyttö) (1990) | Comedy\|Drama
+      It's Such a Beautiful Day (2012) | Animation\|Comedy\|Drama\|Fantasy\|Sci-Fi
+      Frank (2014) | Comedy\|Drama\|Mystery
+      Black Mirror: White Christmas (2014) | Drama\|Horror\|Mystery\|Sci-Fi\|Thriller
 
 3. ***Kesimpulan:***
     - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
     - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
-    
-4. Membuat class RecommenderNet, merupakan model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
+
+4. Membuat class **Cosine Similarity**, merupakan metode untuk mengukur kemiripan antara dua vektor dalam ruang multidimensi. Biasanya digunakan dalam analisis teks, data produk, atau pengguna untuk menghitung sejauh mana dua entitas memiliki kesamaan. Nilai kemiripan yang dihasilkan berkisar antara -1 hingga 1, di mana 1 menunjukkan vektor sepenuhnya sama (kemiripan maksimum). 0 menunjukkan vektor ortogonal atau tidak ada kemiripan. -1 menunjukkan vektor berlawanan arah.
+   - Rumus Cosine Similarity
+     
+     ![Screenshot 2024-10-21 202530](https://github.com/user-attachments/assets/e17a2a69-ef13-4796-b0ab-d5e1f7f6f894)
+
+     - A dan B dua vektor (misalnya, title atau genre).
+     - A ⋅ B adalah hasil perkalian dot product (perkalian elemen-elemen dari kedua vektor dan penjumlahan hasilnya).
+     - ∥A∥ dan ∥B∥ adalah panjang (magnitude) dari masing-masing vektor.
+
+   - Langkah kerja untuk sistem rekomendasi
+     - Representasi data sebagai vektor berdasarkan fitur tertentu.
+     - Menghitung similarity Setiap pasangan dihitung dengan rumus cosine similarity untuk menemukan kemiripan.
+     - Pilih similarity terbesar untuk membuat rekomendasi.
+
+   - Parameter yang harus diperhatikan
+     - Input Matrix: Biasanya matriks user-item atau item-item.
+     - Sparsity: Pastikan tidak terlalu banyak data kosong dalam vektor rating.
+     - Normalisasi: Vektor dapat dinormalisasi sebelum perhitungan, terutama jika nilai rating berbeda-beda.
+
+6. Membuat class **RecommenderNet**, merupakan model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
+   - Langkah kerja
+     - Input layer berupa pasangan user ID dan item ID. Setiap entitas ini direpresentasikan sebagai vektor embedding.
+     - Embedding Layer dihasilkan untuk merepresentasikan fitur terlatih dari pengguna dan item.
+     - Dot Product Layer Hasil embedding dihubungkan melalui operasi dot product untuk memprediksi rating atau skor relevansi.
+     - Output Layer memberikan rating yang diprediksi atau probabilitas kesukaan untuk sebuah item.
+     - Loss Function Mean Squared Error (MSE) atau Binary Crossentropy digunakan sebagai fungsi loss, tergantung pada jenis rekomendasi.
+
+   - Parameter yang harus diperhatikan
+     - Jumlah Users dan Items.
+     - Embedding Size.
+     - Optimizer biasanya menggunakan ADAM atau SGD.
+     - Loss Function menggunakan **MSE** Cocok untuk memprediksi rating, menggunakan **Binary Crossentropy** Cocok untuk prediksi biner (misalnya, like/dislike).
+     - Epoch menentukan berapa kali seluruh dataset diproses.
+     - Batch Size adalah jumlah sampel yang digunakan dalam sekali iterasi.
 
 ---
 ## Evaluation
