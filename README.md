@@ -154,7 +154,7 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
         
             title | genres
             --- | ---
-            M. Butterfly (1993)	Drama|Romance
+            M. Butterfly (1993) | Drama|Romance
             Nicholas Nickleby (2002) | Drama|Romance
             Far from Heaven (2002) | Drama|Romance
             Talk to Her (Hable con Ella) (2002) | Drama|Romance
