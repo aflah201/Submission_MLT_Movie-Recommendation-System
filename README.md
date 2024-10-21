@@ -228,20 +228,56 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
 
 2. Menampilkan plot evaluasi.
 
-    ![plot rekomendasi](https://github.com/user-attachments/assets/442a11f7-31ca-4605-a50c-4a18213e251c)
+    ![plot rekomendasi](https://github.com/user-attachments/assets/beaa9fde-d82e-454b-9be0-4ff018a9b311)
 
     Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
 
    Dari plot RMSE yang diberikan, nilai RMSE untuk pendekatan *Collaborative Filtering* dapat diestimasi dengan melihat nilai terendah (minimum) pada kurva data latih (train) dan data uji (test).
-   - **RMSE Data Latih (Train)**: Nilai RMSE cenderung stabil dan mendekati 0.19 setelah beberapa *epoch*. Ini menunjukkan performa yang baik pada data yang dilatih oleh model.
-   - **RMSE Data Uji (Test)**: Setelah *epoch* awal, nilai RMSE cenderung stabil di sekitar 0.21. Ini menunjukkan kemampuan model untuk memprediksi data uji dengan cukup akurat, meskipun ada sedikit perbedaan dibandingkan dengan data latih yang menunjukkan adanya *overfitting* kecil.
-   
-   Sehingga, nilai RMSE terendah yang dapat diidentifikasi adalah sekitar **0.19** untuk data latih dan **0.21** untuk data uji.
+   - **RMSE Data Latih (Train)**: Di akhir epoch (sekitar epoch 100), RMSE untuk training mendekati 0.211.
+   - **RMSE Data Uji (Test)**: Untuk data testing, nilai RMSE terlihat sedikit lebih tinggi dan berfluktuasi, tetapi cenderung stabil di sekitar 0.225 hingga 0.230 pada akhir epoch.
 
+3. Mendapatkan top-5 rekomendasi
+   title | genres
+   --- | ---
+   M. Butterfly (1993) | Drama\|Romance
+   Nicholas Nickleby (2002) | Drama\|Romance
+   Far from Heaven (2002) | Drama\|Romance
+   Talk to Her (Hable con Ella) (2002) | Drama\|Romance
+   Before Sunrise (1995) | Drama\|Romance
+
+   Dari hasil diatas dapat dilihat bahwa film yang berkategori Drama|Romance menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 5 item memiliki genre Drama|Romance. (similar). Artinya, precision sistem kita sebesar 5/5 atau 100%.
+   Teknik Evaluasi di atas adalah dengan menggunakan precission, rumus dari teknik ini adalah :
+
+   ![Screenshot 2024-10-21 141327](https://github.com/user-attachments/assets/3e8d46b2-98bb-44ba-a3d6-bd43ed72d462)
 4. Mendapatkan rekomendasi film.
 
-   ![Screenshot 2024-10-21 085551](https://github.com/user-attachments/assets/9edd8f60-540d-4a01-9d24-821e94b1dc56)
+   ![Screenshot 2024-10-21 170933](https://github.com/user-attachments/assets/02c980e1-d5b2-426f-bbec-4bb2331e18a1)
+   
+   Menampilkan rekomendasi untuk pengguna: 462
+   
+   Film dengan rating tertinggi dari pengguna:
+   Titles | Genres
+   --- | ---
+   Taxi Driver (1976) | Crime\|Drama\|Thriller
+   Heavenly Creatures (1994) | Crime\|Drama
+   Godfather, The (1972) | Crime\|Drama
+   Monty Python's Life of Brian (1979) | Comedy
+   Raging Bull (1980) | Drama
 
+   10 film teratas yang direkomendasikan:
+   Titles | Genres
+   --- | ---
+   Place in the Sun, A (1951) | Drama\|Romance
+   My Life (1993) | Drama
+   Crossing Delancey (1988) | Comedy\|Romance
+   Woman Under the Influence, A (1974) | Drama
+   Adam's Rib (1949) | Comedy\|Romance
+   Into the Woods (1991) | Adventure\|Comedy\|Fantasy\|Musical
+   Match Factory Girl, The (Tulitikkutehtaan tyttö) (1990) | Comedy\|Drama
+   It's Such a Beautiful Day (2012) | Animation\|Comedy\|Drama\|Fantasy\|Sci-Fi
+   Frank (2014) | Comedy\|Drama\|Mystery
+   Black Mirror: White Christmas (2014) | Drama\|Horror\|Mystery\|Sci-Fi\|Thriller
+   
    Dari hasil rekomendasi film diatas adalah Film dengan rating tinggi memberikan saran umum berdasarkan popularitas dan kualitas film. Rekomendasi personal lebih spesifik berdasarkan preferensi atau perilaku pengguna 219, bertujuan memberikan pengalaman lebih relevan dan menarik.
 ---
 ## Kesimpulan
