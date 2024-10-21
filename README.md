@@ -41,7 +41,7 @@ Berikut informasi mengenai jumlah data, tipe data, data statisika, dan informasi
 
 ![Screenshot 2024-10-21 010141](https://github.com/user-attachments/assets/8008f841-6817-4412-bf3d-0d54318870fd)
 
-Pada berkas links.csv berisi 9742 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 2 kolom berisi tipe data `int64`.
+Pada berkas links.csv berisi 9734 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 2 kolom berisi tipe data `int64`.
 Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
 Variabel | Keterangan | Tipe Data
 --- | --- | ---
@@ -89,6 +89,10 @@ Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemros
 5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
 
    ![Screenshot 2024-10-21 093610](https://github.com/user-attachments/assets/19cdcf40-1bda-49a1-b7ef-c2e1d4c0e6e8)
+
+   Dari hasil diatas terdapat data kosong pada variabel `tmdbId` berjumlah 8 data.
+6. Melakukan pembatasan nilai outliers pada `rating`, yang menghasilkan data bersih sejumlah 96.655 data.
+7. Melakukan pengecekan data duplikat setiap dataset, ternyata tidak terdeteksi data duplikat.
 
 ---
 ## Data Preparation
@@ -141,14 +145,22 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Mendapatkan rekomendasi yang telah dibuat.
         - Berikut ini adalah hasil film yang disukai pengguna:
 
-            ![Screenshot 2024-10-21 141520](https://github.com/user-attachments/assets/a25e7b6d-9f68-4cc3-b2db-c39d2d6e8808)
+            movieId | title | genres
+            --- | --- | ---
+            31903 | Zelary (2003) | Drama|Romance
 
-            Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Superman II (1980) dengan kategori film Action|Sci-Fi.
+            Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Zelary (2003) dengan kategori film Drama|Romance.
         - Berikut ini hasil dari top-5 rekomendasi berdasarkan algoritma Content Based Filtering adalah sebagai berikut:
         
-            ![Screenshot 2024-10-21 141610](https://github.com/user-attachments/assets/52892de9-ccea-4bb1-beb7-c80c70da790d)
+            title | genres
+            --- | ---
+            M. Butterfly (1993)	Drama|Romance
+            Nicholas Nickleby (2002) | Drama|Romance
+            Far from Heaven (2002) | Drama|Romance
+            Talk to Her (Hable con Ella) (2002) | Drama|Romance
+            Before Sunrise (1995) | Drama|Romance
 
-            Dari hasil diatas dapat dilihat bahwa film yang berkategori Action|Sci-Fi menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 2 item memiliki genre Action|Sci-Fi. (similar). Artinya, precision sistem kita sebesar 2/5 atau 40%.
+            Dari hasil diatas dapat dilihat bahwa film yang berkategori Drama|Romance menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 5 item memiliki genre Drama|Romance. (similar). Artinya, precision sistem kita sebesar 5/5 atau 100%.
             Teknik Evaluasi di atas adalah dengan menggunakan precission, rumus dari teknik ini adalah :
 
             ![Screenshot 2024-10-21 141327](https://github.com/user-attachments/assets/3e8d46b2-98bb-44ba-a3d6-bd43ed72d462)
