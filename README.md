@@ -42,30 +42,53 @@ Berikut informasi mengenai jumlah data, tipe data, data statisika, dan informasi
 ![Screenshot 2024-10-21 010141](https://github.com/user-attachments/assets/8008f841-6817-4412-bf3d-0d54318870fd)
 
 Pada berkas links.csv berisi 9742 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 2 kolom berisi tipe data `int64`.
+Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
+Variabel | Keterangan | Tipe Data
+--- | --- | ---
+movieId | Merupakan id film. | `int64`
+imdbId | Merupakan id basis data daring yang berisi informasi mengenai film, acara TV, video rumahan, permainan video, dan acara internet. | `int64`
+tmdbId | Merupakan id basis data film dan TV yang dapat diakses secara gratis dan diedit oleh pengguna. | `float64`
 
 ![Screenshot 2024-10-21 010155](https://github.com/user-attachments/assets/2f7af2b3-cc6c-47fb-91c4-b4c18900c151)
 
 Pada berkas movies.csv berisi 9742 baris x 3 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `int64`, dan 2 kolom berisi tipe data `object`.
+Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
+Variabel | Keterangan | Tipe Data
+--- | --- | ---
+movieId | Merupakan id film. | `int64`
+title | Merupakan judul film. | `object`
+genres | merupakan kategori film. | `object`
 
 ![Screenshot 2024-10-21 010210](https://github.com/user-attachments/assets/60087f32-e565-4876-b0fb-52311b1e9e57)
 
 Pada berkas ratings.csv berisi 100.836 baris x 6 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `float64`, dan 5 kolom berisi tipe data `int64`.
+Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
+Variabel | Keterangan | Tipe Data
+--- | --- | ---
+userId | Merupakan id pengguna. | `int64`
+movieId | Merupakan id film. | `int64`
+rating | Merupakan penilaian film. | `float64`
+timestamp | Merupakan tanda waktu atau nilai numerik yang mewakili waktu tertentu dalam bentuk yang dapat dimengerti komputer. | `int64`
 
 ![Screenshot 2024-10-21 010226](https://github.com/user-attachments/assets/90a18231-a03a-48d7-8b86-ff1b13fcf9ce)
 
 Pada berkas tags.csv berisi 3683 baris x 4 kolom. Kolom-kolom tersebut berisi diantaranya 1 kolom berisi tipe data `object`, dan 3 kolom berisi tipe data `int64`.
+Untuk penjelasan mengenai variabel dapat dilihat sebagai berikut:
+Variabel | Keterangan | Tipe Data
+--- | --- | ---
+userId | Merupakan id pengguna. | `int64`
+movieId | Merupakan id film. | `int64`
+tag | Merupakan kategori. | `object`
+timestamp | Merupakan tanda waktu atau nilai numerik yang mewakili waktu tertentu dalam bentuk yang dapat dimengerti komputer. | `int64`
 
 Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemrosesan data, yaitu:
 1. Menampilkan dataset untuk mengetahui variabel yang digunakan.
 2. Melihat isi dataset dengan fungsi `head()` setiap dataframe.
 3. Menampikan data unik untuk `movieId` dan `userId`.
 4. Mendeskripsikan nilai statisika pada dataset `ratings` menggunakan `describe()`.
-
-    ![Screenshot 2024-10-21 093209](https://github.com/user-attachments/assets/4f6fa622-9e6f-43d7-9b1f-523cfe9506a7)
-
 5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
-
-    ![Screenshot 2024-10-21 093610](https://github.com/user-attachments/assets/52e94fa0-a676-43c3-a269-43c47752abe4)
+6. Membersihkan missing value menggunakan fungsi `dropna()`.
+7. Memvisualisasikan hasil evaluasi data train dan test.
 
 ---
 ## Data Preparation
@@ -141,7 +164,7 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
 3. ***Kesimpulan:***
     - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
     - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
-
+    
 4. Membuat class RecommenderNet, merupakan model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
 
 ---
