@@ -139,7 +139,17 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
         Cosine similarity adalah metode untuk mengukur kemiripan antara dua vektor dalam ruang multidimensi. Biasanya digunakan dalam analisis teks, data produk, atau pengguna untuk menghitung sejauh mana dua entitas memiliki kesamaan. Nilai kemiripan yang dihasilkan berkisar antara -1 hingga 1, di mana 1 menunjukkan vektor sepenuhnya sama (kemiripan maksimum). 0 menunjukkan vektor ortogonal atau tidak ada kemiripan. -1 menunjukkan vektor berlawanan arah.
     - Membuat fungsi rekomendasi.
     - Mendapatkan rekomendasi yang telah dibuat.
+        - Berikut ini adalah hasil film yang disukai pengguna:
 
+
+            Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Superman II (1980) dengan kategori film Action|Sci-Fi.
+        - Berikut ini hasil dari top-5 rekomendasi berdasarkan algoritma Content Based Filtering adalah sebagai berikut:
+        
+
+            Dari hasil diatas dapat dilihat bahwa film yang berkategori Action|Sci-Fi menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna.
+
+            Teknik Evaluasi di atas adalah dengan menggunakan precission, rumus dari teknik ini adalah :
+            
 
 2. ***Collaborative Filtering***
 
@@ -210,6 +220,8 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
 3. Mendapatkan rekomendasi film.
 
    ![Screenshot 2024-10-21 085551](https://github.com/user-attachments/assets/9edd8f60-540d-4a01-9d24-821e94b1dc56)
+
+   Dari hasil rekomendasi di atas, diketahui bahwa Superman II (1980) termasuk ke dalam kategori Action|Sci-Fi. Dari 5 item yang direkomendasikan, 2 item memiliki genre Action|Sci-Fi (similar). Artinya, precision sistem kita sebesar 2/5 atau 40%.
 
 ---
 ## Kesimpulan
