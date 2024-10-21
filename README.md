@@ -335,7 +335,7 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
    Frank (2014) | Comedy\|Drama\|Mystery
    Black Mirror: White Christmas (2014) | Drama\|Horror\|Mystery\|Sci-Fi\|Thriller
    
-   Dari hasil rekomendasi film diatas adalah Film dengan rating tinggi memberikan saran umum berdasarkan popularitas dan kualitas film. Rekomendasi personal lebih spesifik berdasarkan preferensi atau perilaku pengguna 219, bertujuan memberikan pengalaman lebih relevan dan menarik.
+   Dari hasil rekomendasi film diatas adalah Film dengan rating tinggi memberikan saran umum berdasarkan popularitas dan kualitas film. Rekomendasi personal lebih spesifik berdasarkan preferensi atau perilaku pengguna 462, bertujuan memberikan pengalaman lebih relevan dan menarik.
 ---
 ## Kesimpulan
 Proyek sistem rekomendasi film sangat relevan dalam konteks platform streaming seperti Netflix, HBO Max, dan Disney+ yang menyediakan ribuan item dalam katalognya. Dengan jumlah konten yang begitu besar, pengguna sering merasa kesulitan memilih acara TV atau film yang sesuai dengan preferensi mereka. Sistem rekomendasi menjadi kunci untuk meningkatkan pengalaman pengguna dengan mempermudah mereka menemukan konten yang relevan dan menarik.
