@@ -62,7 +62,10 @@ movies_df = pd.read_csv('/content/ml-latest-small/movies.csv')
 ratings_df = pd.read_csv('/content/ml-latest-small/ratings.csv')
 tags_df = pd.read_csv('/content/ml-latest-small/tags.csv')
 
-"""**2. Menampilkan dataset `links.csv`,`movies.csv`,`ratings.csv`, dan `tags.csv`**"""
+"""Pada tahap diatas adalah membaca dataframe yang telah diunduh.
+
+**2. Menampilkan dataset `links.csv`,`movies.csv`,`ratings.csv`, dan `tags.csv`**
+"""
 
 # Fungsi untuk menampilkan DataFrame dengan judul dan jarak
 def title_head(title, df):
@@ -75,7 +78,10 @@ title_head('Movies DataFrame', movies_df)
 title_head('Ratings DataFrame', ratings_df)
 title_head('Tags DataFrame', tags_df)
 
-"""**3. Menampilkan data unik dari setiap dataset**"""
+"""Pada tahap diatas adalah menampilkan isi dari setiap dataset
+
+**3. Menampilkan data unik dari setiap dataset**
+"""
 
 print('Jumlah `movieId` data unique dari links', len(links_df['movieId'].unique()))
 print('Jumlah `movieId` data unique dari movies', len(movies_df['movieId'].unique()))
@@ -84,7 +90,10 @@ print('Jumlah `movieId` data unique dari tags', len(tags_df['movieId'].unique())
 print('Jumlah `userId` data unique dari ratings', len(ratings_df['userId'].unique()))
 print('Jumlah `userId` data unique dari tags', len(tags_df['userId'].unique()))
 
-"""**4. Menampilkan variabel dataset `links.csv`,`movies.csv`,`ratings.csv`, dan `tags.csv`**"""
+"""Pada tahap diatas adalah menampilkan data unik setiap dataset dengan ketentuan `movieId` dan `userId`.
+
+**4. Menampilkan variabel dataset `links.csv`,`movies.csv`,`ratings.csv`, dan `tags.csv`**
+"""
 
 # Fungsi untuk menampilkan DataFrame dengan judul dan jarak
 def title_info(title, df):
@@ -97,38 +106,48 @@ title_info('Movies Info', movies_df)
 title_info('Ratings Info', ratings_df)
 title_info('Tags Info', tags_df)
 
-"""**5. Mengatasi data kosong pada `links.csv`**
+"""Pada tahap diatas adalah menampilkan variabel yang ada pada setiap dataset.
 
-Mengecek data kosong pada `links.csv`
+**5. Mengatasi data kosong pada `links.csv`**
 """
 
 links_df.isnull().sum()
 
 links_df.loc[links_df['tmdbId'].isnull()]
 
-"""Menghapus data kosong berdasarkan kolom"""
-
 links_df.drop(links_df.loc[links_df['tmdbId'].isnull()].index, inplace=True)
 links_df.isnull().sum()
 
 links_df.info()
 
-"""**6. Mencetak entri unik berdasarkan `movieId` dan jenis `genres`**"""
+"""Pada tahap mengatasi missing value, adalah mengecek data yang kosong menggunakan fungsi `isnull()`, lalu menampilkan data yang terdeteksi kosong, kemudian menghapus data yang terdeteksi kosong, terakhir menampilkan data setelah dibersihkan.
+
+**6. Mencetak entri unik berdasarkan `movieId` dan jenis `genres`**
+"""
 
 print('Banyak data entri unik berdasarkan `movieId` : ', movies_df['movieId'].nunique())
 print('Jenis genre film : ', movies_df['genres'].unique())
 
-"""**7. Mendeskripsikan variabel statisika dari `ratings`**"""
+"""Pada tahap diatas adalah menampilkan entri unik berdasarkan `movieId` dan `genres`
+
+**7. Mendeskripsikan variabel statisika dari `ratings`**
+"""
 
 ratings_df.describe()
 
-"""**8. Mencetak jumlah `userId`, `movieId`, dan `rating` pada dataset ratings**"""
+"""Pada tahap mendeskripsikan variabel statistika terdapat keanehan tentang rating pada film, dimana rating bernilai minimum 0.5
+
+**8. Mencetak jumlah `userId`, `movieId`, dan `rating` pada dataset ratings**
+"""
 
 print('Jumlah `userId` : ', len(ratings_df['userId'].unique()))
 print('Jumlah `movieId` : ', len(ratings_df['movieId'].unique()))
 print('Jumlah `rating` : ', len(ratings_df))
 
-"""**9. Menampilkan nilai outliers**"""
+"""Mencetak jumlah `userId`, `movieId`, dan `rating`
+
+**9. Menampilkan nilai outliers**
+"""
 
 sns.boxplot(x=ratings_df['rating'])
 plt.show()
@@ -147,17 +166,25 @@ Q1 = ratings_df['rating'].quantile(0.25)
 Q3 = ratings_df['rating'].quantile(0.75)
 IQR = Q3 - Q1
 
-ratings_df = ratings_df[~((ratings_df['rating'] < (Q1 - 1.5 * IQR)) | (ratings_df['rating'] > (Q3 + 1.5 * IQR)))]
+lower_bound = max(1, Q1 - 1.5 * IQR)
+upper_bound = min(5, Q3 + 1.5 * IQR)
+
+# ratings_df = ratings_df[~((ratings_df['rating'] < (Q1 - 1.5 * IQR)) | (ratings_df['rating'] > (Q3 + 1.5 * IQR)))]
+ratings_df = ratings_df[~((ratings_df['rating'] < lower_bound) | (ratings_df['rating'] > upper_bound))]
 ratings_df.shape
 
-"""Dari hasil pembatasan outliers diatas data rating menjadi 96.655 data, yang semula 100836 data sebelum dilakukannya outliers.
+"""Dari hasil pembatasan outliers diatas data rating menjadi 96.655 data, yang semula 100836 data sebelum dilakukannya outliers."""
 
-**11. Menampilkan dataset outliers yang telah dibersihkan**
-"""
+ratings_df.describe()
+
+"""**11. Menampilkan dataset outliers yang telah dibersihkan**"""
 
 ratings_df.info()
 
-"""**12. Mengecek data duplikat dari setiap dataset**"""
+"""Hasil akhir deskripsi variabel dataset `ratings.csv` setelah dilakukan pembersihan outliers
+
+**12. Mengecek data duplikat dari setiap dataset**
+"""
 
 # Mengecek duplikat di setiap dataframe
 def check_duplicates(df, df_name):
@@ -343,11 +370,16 @@ def movies_recommendation(title, similarity_data=cosine_sim_df, items=movies_dat
 
 movies_data[movies_data.title.eq('Zelary (2003)')]
 
-"""**10. Mendapatkan rekomendasi film**"""
+"""Pada tahap ini menampilkan data film yang disukai pengguna
+
+**10. Mendapatkan rekomendasi film**
+"""
 
 movies_recommendation('Zelary (2003)')
 
-"""### **Collaborative Filtering**
+"""Pada tahap ini menghasilkan output top 5 rekomendasi film
+
+### **Collaborative Filtering**
 
 **1. Membaca dataset**
 """
