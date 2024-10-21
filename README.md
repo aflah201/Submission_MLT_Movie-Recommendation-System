@@ -141,15 +141,18 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
     - Mendapatkan rekomendasi yang telah dibuat.
         - Berikut ini adalah hasil film yang disukai pengguna:
 
+            ![Screenshot 2024-10-21 141520](https://github.com/user-attachments/assets/a25e7b6d-9f68-4cc3-b2db-c39d2d6e8808)
 
             Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Superman II (1980) dengan kategori film Action|Sci-Fi.
         - Berikut ini hasil dari top-5 rekomendasi berdasarkan algoritma Content Based Filtering adalah sebagai berikut:
         
+            ![Screenshot 2024-10-21 141610](https://github.com/user-attachments/assets/52892de9-ccea-4bb1-beb7-c80c70da790d)
 
-            Dari hasil diatas dapat dilihat bahwa film yang berkategori Action|Sci-Fi menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna.
-
+            Dari hasil diatas dapat dilihat bahwa film yang berkategori Action|Sci-Fi menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 2 item memiliki genre Action|Sci-Fi. (similar). Artinya, precision sistem kita sebesar 2/5 atau 40%.
             Teknik Evaluasi di atas adalah dengan menggunakan precission, rumus dari teknik ini adalah :
-            
+
+            ![Screenshot 2024-10-21 141327](https://github.com/user-attachments/assets/3e8d46b2-98bb-44ba-a3d6-bd43ed72d462)
+
 
 2. ***Collaborative Filtering***
 
@@ -217,12 +220,17 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
 
     Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
 
-3. Mendapatkan rekomendasi film.
+   Dari plot RMSE yang diberikan, nilai RMSE untuk pendekatan *Collaborative Filtering* dapat diestimasi dengan melihat nilai terendah (minimum) pada kurva data latih (train) dan data uji (test).
+   - **RMSE Data Latih (Train)**: Nilai RMSE cenderung stabil dan mendekati 0.19 setelah beberapa *epoch*. Ini menunjukkan performa yang baik pada data yang dilatih oleh model.
+   - **RMSE Data Uji (Test)**: Setelah *epoch* awal, nilai RMSE cenderung stabil di sekitar 0.21. Ini menunjukkan kemampuan model untuk memprediksi data uji dengan cukup akurat, meskipun ada sedikit perbedaan dibandingkan dengan data latih yang menunjukkan adanya *overfitting* kecil.
+   
+   Sehingga, nilai RMSE terendah yang dapat diidentifikasi adalah sekitar **0.19** untuk data latih dan **0.21** untuk data uji.
+
+4. Mendapatkan rekomendasi film.
 
    ![Screenshot 2024-10-21 085551](https://github.com/user-attachments/assets/9edd8f60-540d-4a01-9d24-821e94b1dc56)
 
-   Dari hasil rekomendasi di atas, diketahui bahwa Superman II (1980) termasuk ke dalam kategori Action|Sci-Fi. Dari 5 item yang direkomendasikan, 2 item memiliki genre Action|Sci-Fi (similar). Artinya, precision sistem kita sebesar 2/5 atau 40%.
-
+   Dari hasil rekomendasi film diatas adalah Film dengan rating tinggi memberikan saran umum berdasarkan popularitas dan kualitas film. Rekomendasi personal lebih spesifik berdasarkan preferensi atau perilaku pengguna 219, bertujuan memberikan pengalaman lebih relevan dan menarik.
 ---
 ## Kesimpulan
 Proyek sistem rekomendasi film sangat relevan dalam konteks platform streaming seperti Netflix, HBO Max, dan Disney+ yang menyediakan ribuan item dalam katalognya. Dengan jumlah konten yang begitu besar, pengguna sering merasa kesulitan memilih acara TV atau film yang sesuai dengan preferensi mereka. Sistem rekomendasi menjadi kunci untuk meningkatkan pengalaman pengguna dengan mempermudah mereka menemukan konten yang relevan dan menarik.
