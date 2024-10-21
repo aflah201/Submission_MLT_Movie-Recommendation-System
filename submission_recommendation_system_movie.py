@@ -282,7 +282,11 @@ def movies_recommendation(title, similarity_data=cosine_sim_df, items=movies_dat
   closest = closest.drop(title, errors='ignore')
   return pd.DataFrame(closest).merge(items).head(k)
 
-"""**9. Mendapatkan rekomendasi film**"""
+"""**9. Mendapatkan film yang disukai pengguna**"""
+
+movies_data[movies_data.title.eq('Superman II (1980)')]
+
+"""**10. Mendapatkan rekomendasi film**"""
 
 movies_recommendation('Superman II (1980)')
 
@@ -493,19 +497,3 @@ print('-' * 32)
 # Menampilkan 10 film teratas yang direkomendasikan
 for _, row in movies_df[movies_df['movieId'].isin(recommended_movie_ids)].iterrows():
     print(f"{row.title} : {row.genres}")
-
-# Membuat tabel untuk film dengan rating tertinggi dari pengguna
-top_movies_user_df = movies_df[movies_df['movieId'].isin(top_movies_user)][['title', 'genres']]
-print(f'Menampilkan rekomendasi untuk pengguna: {user_id}')
-print('=' * 50)
-print('Film dengan rating tertinggi dari pengguna:')
-print('-' * 50)
-print(top_movies_user_df.to_string(index=False))
-
-print('\n' + '-' * 50)
-print('10 film teratas yang direkomendasikan:')
-print('-' * 50)
-
-# Membuat tabel untuk 10 film teratas yang direkomendasikan
-recommended_movies_df = movies_df[movies_df['movieId'].isin(recommended_movie_ids)][['title', 'genres']]
-print(recommended_movies_df.to_string(index=False))
