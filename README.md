@@ -63,12 +63,9 @@ Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemros
 
     ![Screenshot 2024-10-21 093209](https://github.com/user-attachments/assets/4f6fa622-9e6f-43d7-9b1f-523cfe9506a7)
 
-6. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
+5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
 
     ![Screenshot 2024-10-21 093610](https://github.com/user-attachments/assets/52e94fa0-a676-43c3-a269-43c47752abe4)
-
-8. Membersihkan missing value menggunakan fungsi `dropna()`.
-9. Memvisualisasikan hasil evaluasi data train dan test.
 
 ---
 ## Data Preparation
