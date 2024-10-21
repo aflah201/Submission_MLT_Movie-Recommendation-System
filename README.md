@@ -88,6 +88,8 @@ Dalam mengembangkan proyek rekomendasi ini diperlukan beberapa cara dalam pemros
 4. Mendeskripsikan nilai statisika pada dataset `ratings` menggunakan `describe()`.
 5. Cek missing value dengan fungsi `isnull()`, untuk mengatasi data kosong.
 
+   ![Screenshot 2024-10-21 093610](https://github.com/user-attachments/assets/19cdcf40-1bda-49a1-b7ef-c2e1d4c0e6e8)
+
 ---
 ## Data Preparation
 Berikut adalah tahapan dalam melakukan data preparation:
