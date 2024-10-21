@@ -141,7 +141,6 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
 3. ***Kesimpulan:***
     - ***Collaborative Filtering*** cocok untuk memberikan rekomendasi yang lebih personal, tetapi rentan terhadap masalah data yang minim dan skala besar.
     - ***Content-Based Filtering*** efektif untuk item-item baru dan lebih konsisten dalam hal konten serupa, tetapi cenderung kurang eksploratif dan bergantung pada ketersediaan deskripsi konten yang detail. 
-    Pendekatan hybrid yang menggabungkan kedua metode ini dapat mengurangi kekurangan dari masing-masing pendekatan dengan memanfaatkan kelebihannya secara bersamaan.
 
 4. Membuat class RecommenderNet, merupakan model yang dirancang untuk membangun sistem rekomendasi dengan memanfaatkan embedding. Model ini memetakan pengguna dan item (seperti film) ke dalam ruang vektor berdimensi rendah sehingga hubungan antara pengguna dan item dapat dianalisis. Embedding ini memungkinkan sistem untuk mengenali pola kesamaan atau preferensi antara pengguna dan item secara efisien.
 
