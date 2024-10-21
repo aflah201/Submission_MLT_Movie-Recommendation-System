@@ -158,13 +158,13 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
             - Jika nilai RMSE mendekati nol, ini berarti model berhasil memprediksi nilai yang sangat mendekati nilai sebenarnya.
    
     - **Rumus RMSE**:
-        \[
-        RMSE = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y_i})^2}
-        \]
-        Di mana:
-        - \( N \) adalah jumlah sampel.
-        - \( y_i \) adalah nilai aktual.
-        - \( \hat{y_i} \) adalah nilai prediksi.
+      
+      ![Screenshot 2024-10-21 092611](https://github.com/user-attachments/assets/6c9f4934-dfc7-4e8b-aec4-82b93d311a8d)
+
+      dimana:
+      - N adalah jumlah sampel
+      - 𝑦𝑖 adalah nilai aktual
+      - 𝑦𝑖^ adalah nilai prediksi
 
     - **Interpretasi Hasil**
         - **Binary Crossentropy**: Setelah model dilatih, nilai *loss* (kerugian) akan memberikan indikasi seberapa jauh model dari hasil ideal. Jika *loss* sangat rendah, ini menunjukkan model memiliki prediksi yang baik dalam hal klasifikasi biner (misalnya, apakah seorang pengguna menyukai sebuah item atau tidak).
@@ -183,6 +183,8 @@ Setelah melakukan model developmenet pada data, langkah selanjutnya adalah *Eval
     Plot di atas menunjukkan nilai root mean squared error (RMSE) dari data latih (train) dan data uji (test) seiring bertambahnya epoch. Awalnya, RMSE pada kedua data menurun, menunjukkan model belajar dengan baik. Namun, setelah epoch 10-20, RMSE pada data uji mulai stabil dan sedikit meningkat, sementara RMSE pada data latih terus menurun. Ini adalah tanda overfitting, di mana model hanya bekerja baik pada data latih, tetapi tidak pada data uji. Untuk mengatasi hal ini, metode seperti regularization, dropout, atau early stopping dapat diterapkan agar model lebih baik dalam menggeneralisasi data baru.
 
 3. Mendapatkan rekomendasi film.
+
+   ![Screenshot 2024-10-21 085551](https://github.com/user-attachments/assets/9edd8f60-540d-4a01-9d24-821e94b1dc56)
 
 ---
 ## Kesimpulan
