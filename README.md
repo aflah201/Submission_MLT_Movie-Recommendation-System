@@ -147,20 +147,20 @@ Setelah melakukan pra-pemrosesan pada data, langkah selanjutnya adalah *Model De
 
             movieId | title | genres
             --- | --- | ---
-            31903 | Zelary (2003) | Drama|Romance
+            31903 | Zelary (2003) | 'Drama|Romance'
 
-            Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Zelary (2003) dengan kategori film Drama|Romance.
+            Dari hasil diatas dapat dilihat bahwa pengguna menyukai film yang berjudul Zelary (2003) dengan kategori film 'Drama|Romance'.
         - Berikut ini hasil dari top-5 rekomendasi berdasarkan algoritma Content Based Filtering adalah sebagai berikut:
         
             title | genres
             --- | ---
-            M. Butterfly (1993) | Drama|Romance
-            Nicholas Nickleby (2002) | Drama|Romance
-            Far from Heaven (2002) | Drama|Romance
-            Talk to Her (Hable con Ella) (2002) | Drama|Romance
-            Before Sunrise (1995) | Drama|Romance
+            M. Butterfly (1993) | 'Drama|Romance'
+            Nicholas Nickleby (2002) | 'Drama|Romance'
+            Far from Heaven (2002) | 'Drama|Romance'
+            Talk to Her (Hable con Ella) (2002) | 'Drama|Romance'
+            Before Sunrise (1995) | 'Drama|Romance'
 
-            Dari hasil diatas dapat dilihat bahwa film yang berkategori Drama|Romance menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 5 item memiliki genre Drama|Romance. (similar). Artinya, precision sistem kita sebesar 5/5 atau 100%.
+            Dari hasil diatas dapat dilihat bahwa film yang berkategori 'Drama|Romance' menjadi yang direkomendasikan oleh sistem. Hal ini berdasarkan dari film yang disukai oleh pengguna. Dari 5 item yang direkomendasikan, 5 item memiliki genre 'Drama|Romance'. (similar). Artinya, precision sistem kita sebesar 5/5 atau 100%.
             Teknik Evaluasi di atas adalah dengan menggunakan precission, rumus dari teknik ini adalah :
 
             ![Screenshot 2024-10-21 141327](https://github.com/user-attachments/assets/3e8d46b2-98bb-44ba-a3d6-bd43ed72d462)
